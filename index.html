@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Resources</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .banner {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .banner h1 {
+            margin: 0;
+            font-size: 2.2em;
+        }
+        
+        .banner p {
+            margin: 10px 0 0;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        
+        blockquote {
+            background-color: #f0f4f8;
+            border-left: 4px solid #6e8efb;
+            padding: 15px;
+            margin: 20px 0;
+            color: #555;
+            border-radius: 0 8px 8px 0;
+        }
+
+
+/* Add these new styles */
+        .filter-controls {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f0f4f8;
+            border-radius: 8px;
+        }
+        .filter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .filter-tag {
+            padding: 5px 12px;
+            background: #e0e6ed;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.2s;
+        }
+        .filter-tag:hover, .filter-tag.active {
+            background: #6e8efb;
+            color: white;
+        }
+        .resource-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        .resource-tag {
+            padding: 3px 8px;
+            background: #e0e6ed;
+            border-radius: 12px;
+            font-size: 0.8em;
+            color: #4a5568;
+        }
+        .no-results {
+            text-align: center;
+            padding: 30px;
+            color: #718096;
+            display: none;
+        }
+
+        
+        
+        
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        th {
+            background-color: #6e8efb;
+            font-weight: bold;
+            color: #fff;
+        }
+        
+        tr:hover {
+            background-color: #f5f7fa;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        a {
+            color: #4a6bdf;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+            color: #3a56c4;
+        }
+        
+        .back-to-top {
+            text-align: right;
+            margin-top: 30px;
+        }
+        
+        .back-to-top a {
+            font-weight: bold;
+            color: #2c3e50;
+            background-color: #eaeaea;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top a:hover {
+            background-color: #ddd;
+            text-decoration: none;
+        }
+        
+        .thumbnail {
+            width: 120px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-right: 15px;
+            border: 1px solid #eee;
+            float: left;
+        }
+        
+        .website-info {
+            overflow: hidden;
+        }
+        
+        .website-name {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .description {
+            color: #555;
+            font-size: 0.95em;
+        }
+        
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+</head>
+<body>    
+    <div class="banner">
+        <h1>Icon Resources Collection</h1>
+        <p>Your ultimate guide to free and premium icon resources</p>
+    </div>
+    
+    <h2 id="icons">Icons</h2>
+    
+    <blockquote>
+        <p>Resources for Icons including png, svg and more</p>
+    </blockquote>
+
+
+    <div class="filter-controls">
+        <div><strong>Filter by tag:</strong></div>
+        <div class="filter-tags" id="filter-tags">
+            <!-- Tags will be added dynamically -->
+        </div>
+    </div>
+    
+    <div class="no-results" id="no-results">
+        No resources match your selected filters.
+    </div>
+    
+    <table id="resources-table">
+        <thead>
+            <tr>
+                <th>Website</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Table rows will be populated by JavaScript -->
+        </tbody>
+    </table>
+    
+    <div class="back-to-top">
+        <b><a href="#icons">↥ Back To Top</a></b>
+    </div>
+
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const resources = [
+    {
+        url: "https://fonts.google.com/",
+        description: "Library of around 1000 free licensed font families",
+        tags: ["Free", "Fonts", "Google"]
+    },
+    {
+        url: "https://www.dafont.com/",
+        description: "Archive of freely downloadable fonts",
+        tags: ["Free", "Fonts", "Archive"]
+    },
+    {
+        url: "https://usemodify.com/",
+        description: "Personal selection of beautiful, classy, punk, professional, incomplete, weird typefaces",
+        tags: ["Free", "Fonts", "Curated"]
+    },
+    {
+        url: "https://www.1001freefonts.com/",
+        description: "I think the name speaks for itself",
+        tags: ["Free", "Fonts", "Collection"]
+    },
+    {
+        url: "https://www.fontsquirrel.com/",
+        description: "Scours the internet for high quality, legitimately free fonts",
+        tags: ["Free", "Fonts", "Quality"]
+    },
+    {
+        url: "https://www.fontfabric.com/free-fonts/",
+        description: "A digital type foundry crafting retail fonts and custom typography for various brands",
+        tags: ["Free", "Fonts", "Type Foundry"]
+    },
+    {
+        url: "https://justfreefonts.com/",
+        description: "A hand-curated collection of freeware, open-source, and public domain fonts intended for commercial use",
+        tags: ["Free", "Fonts", "Commercial Use"]
+    },
+    {
+        url: "https://winniethemu.github.io/tiff/",
+        description: "A type diff tool that visually contrasts the differences between two fonts",
+        tags: ["Tool", "Font Comparison", "Visual"]
+    },
+    {
+        url: "https://practice.typekit.com/",
+        description: "Learn about typography practices",
+        tags: ["Learning", "Typography", "Education"]
+    },
+    {
+        url: "https://fontjoy.com/",
+        description: "Generate font pairing in one click",
+        tags: ["Tool", "Font Pairing", "Generator"]
+    },
+    {
+        url: "https://grtcalculator.com/",
+        description: "Golden Ratio Typography Calculator",
+        tags: ["Tool", "Typography", "Calculator"]
+    },
+    {
+        url: "https://www.fontget.com/",
+        description: "Has a variety of fonts available to download and sorted neatly with tags",
+        tags: ["Free", "Fonts", "Tagged"]
+    },
+    {
+        url: "https://fontpair.co/",
+        description: "Helps you pair Google Fonts together",
+        tags: ["Tool", "Font Pairing", "Google Fonts"]
+    },
+    {
+        url: "https://www.fontspace.com/",
+        description: "A designer-centered free font website that has quick customizable previews",
+        tags: ["Free", "Fonts", "Designer"]
+    },
+    {
+        url: "http://www.abstractfonts.com/",
+        description: "Fonts free for personal and commercial use",
+        tags: ["Free", "Fonts", "Commercial Use"]
+    },
+    {
+        url: "https://freetypography.com/",
+        description: "A list of high quality fonts",
+        tags: ["Free", "Fonts", "Quality"]
+    },
+    {
+        url: "https://github.com/cmiscm/leonsans/",
+        description: "A geometric sans-serif typeface made with code",
+        tags: ["Free", "Fonts", "Code-based"]
+    },
+    {
+        url: "https://www.lexend.com/",
+        description: "A variable font empirically shown to significantly improve reading-proficiency",
+        tags: ["Free", "Fonts", "Readability"]
+    },
+    {
+        url: "https://developer.apple.com/fonts/",
+        description: "Get the details, frameworks, and tools you need to use system fonts for Apple platforms in your apps",
+        tags: ["Apple", "Fonts", "System"]
+    },
+    {
+        url: "https://github.com/blaisck/sfwin/",
+        description: "San Francisco Fonts for Windows 10 and non-Apple Platform",
+        tags: ["San Francisco", "Fonts", "Windows"]
+    },
+    {
+        url: "https://fontflipper.com/",
+        description: "Preview 800+ Google Fonts on top of your own designs, without having to download the fonts",
+        tags: ["Tool", "Preview", "Google Fonts"]
+    },
+    {
+        url: "https://fontsarena.com/",
+        description: "Free curated fonts",
+        tags: ["Free", "Fonts", "Curated"]
+    },
+    {
+        url: "https://befonts.com/",
+        description: "High quality fonts for free",
+        tags: ["Free", "Fonts", "Quality"]
+    },
+    {
+        url: "https://arabicfonts.net/",
+        description: "Arabic fonts for free",
+        tags: ["Free", "Fonts", "Arabic"]
+    },
+    {
+        url: "https://fontdrop.info",
+        description: "Simple and easy way to view the contents of font files",
+        tags: ["Tool", "Font Viewer", "Utility"]
+    },
+    {
+        url: "https://open-foundry.com",
+        description: "FREE platform for curated open-source typefaces",
+        tags: ["Free", "Fonts", "Open Source"]
+    },
+    {
+        url: "https://glyphter.com",
+        description: "Upload your own SVGS and turn them into font files. Useful if you want a smaller library loaded",
+        tags: ["Tool", "SVG", "Font Creator"]
+    },
+    {
+        url: "https://google-webfonts-helper.herokuapp.com/fonts",
+        description: "A Hassle-Free Way to Self-Host Google Fonts",
+        tags: ["Tool", "Google Fonts", "Self-Hosting"]
+    },
+    {
+        url: "https://djamshed.github.io/rough-awesome-font/dist/",
+        description: "When RoughJS meets Font Awesome",
+        tags: ["Icons", "Font Awesome", "RoughJS"]
+    },
+    {
+        url: "https://ffonts.net",
+        description: "Stylish fonts for free",
+        tags: ["Free", "Fonts", "Stylish"]
+    },
+    {
+        url: "https://smc.org.in/fonts/",
+        description: "Malayalam fonts for free which are maintained by Swathanthra Malayalam Computing(SMC)",
+        tags: ["Free", "Fonts", "Malayalam"]
+    },
+    {
+        url: "https://devfonts.gafi.dev/",
+        description: "Find and use the coding fonts for free",
+        tags: ["Free", "Fonts", "Programming"]
+    },
+    {
+        url: "https://fontm.com/",
+        description: "Free font you can download for material coding and design",
+        tags: ["Free", "Fonts", "Material Design"]
+    },
+    {
+        url: "https://www.wfonts.com/",
+        description: "Download Free fonts",
+        tags: ["Free", "Fonts", "Collection"]
+    },
+    {
+        url: "https://modern-fluid-typography.vercel.app/",
+        description: "Fluid typography is a modern way of approaching responsive typography",
+        tags: ["Tool", "Typography", "Responsive"]
+    },
+    {
+        url: "https://www.urbanfonts.com/",
+        description: "A collection of over 8000 free fonts and dingbats",
+        tags: ["Free", "Fonts", "Dingbats"]
+    },
+    {
+        url: "https://typespiration.com/",
+        description: "Inspirational font combinations and color palettes",
+        tags: ["Inspiration", "Font Pairing", "Color"]
+    },
+    {
+        url: "https://fontsource.org/",
+        description: "Self-host Open Source fonts in neatly bundled NPM packages",
+        tags: ["Open Source", "NPM", "Self-Hosting"]
+    },
+    {
+        url: "https://www.fontbolt.com/",
+        description: "Discover and generate your favorite fonts from pop culture",
+        tags: ["Tool", "Pop Culture", "Font Generator"]
+    },
+    {
+        url: "https://www.fontshare.com/",
+        description: "Free fonts service from the Indian Type Foundry (ITF), making quality fonts accessible to all",
+        tags: ["Free", "Fonts", "Quality"]
+    },
+];
+
+            const tableBody = document.querySelector('#resources-table tbody');
+            const filterTagsContainer = document.getElementById('filter-tags');
+            const noResultsMessage = document.getElementById('no-results');
+            
+            // Get all unique tags
+            const allTags = [...new Set(resources.flatMap(resource => resource.tags))];
+            
+            // Create filter tags
+            allTags.forEach(tag => {
+                const tagElement = document.createElement('div');
+                tagElement.className = 'filter-tag';
+                tagElement.textContent = tag;
+                tagElement.dataset.tag = tag;
+                tagElement.addEventListener('click', toggleTagFilter);
+                filterTagsContainer.appendChild(tagElement);
+            });
+            
+            // Add "All" tag that clears filters
+            const allTag = document.createElement('div');
+            allTag.className = 'filter-tag active';
+            allTag.textContent = 'All';
+            allTag.dataset.tag = 'all';
+            allTag.addEventListener('click', clearFilters);
+            filterTagsContainer.prepend(allTag);
+            
+            let activeFilters = [];
+            
+            // Render all resources initially
+            renderResources(resources);
+            
+            function toggleTagFilter(e) {
+                const tag = e.target.dataset.tag;
+                e.target.classList.toggle('active');
+                
+                if (e.target.classList.contains('active')) {
+                    activeFilters.push(tag);
+                } else {
+                    activeFilters = activeFilters.filter(t => t !== tag);
+                }
+                
+                filterResources();
+            }
+            
+            function clearFilters() {
+                activeFilters = [];
+                document.querySelectorAll('.filter-tag').forEach(tag => {
+                    tag.classList.remove('active');
+                    if (tag.dataset.tag === 'all') {
+                        tag.classList.add('active');
+                    }
+                });
+                filterResources();
+            }
+            
+            function filterResources() {
+                if (activeFilters.length === 0) {
+                    renderResources(resources);
+                    return;
+                }
+                
+                const filtered = resources.filter(resource => 
+                    activeFilters.every(filter => 
+                        resource.tags.includes(filter)
+                    )
+                );
+                
+                renderResources(filtered);
+            }
+            
+            function renderResources(resourcesToRender) {
+                tableBody.innerHTML = '';
+                
+                if (resourcesToRender.length === 0) {
+                    noResultsMessage.style.display = 'block';
+                    return;
+                } else {
+                    noResultsMessage.style.display = 'none';
+                }
+                
+                resourcesToRender.forEach(resource => {
+                    const row = document.createElement('tr');
+                    
+                    const websiteCell = document.createElement('td');
+                    websiteCell.className = 'clearfix';
+                    
+                    const img = document.createElement('img');
+                    img.className = 'thumbnail';
+                    img.src = 'https://via.placeholder.com/120x90?text=Loading...';
+                    img.alt = 'Website thumbnail';
+                    
+                    const div = document.createElement('div');
+                    div.className = 'website-info';
+                    
+                    const link = document.createElement('a');
+                    link.href = resource.url;
+                    link.target = '_blank';
+                    link.className = 'website-name';
+                    link.textContent = new URL(resource.url).hostname.replace('www.', '');
+                    
+                    // Add tags below the link
+                    const tagsContainer = document.createElement('div');
+                    tagsContainer.className = 'resource-tags';
+                    resource.tags.forEach(tag => {
+                        const tagElement = document.createElement('span');
+                        tagElement.className = 'resource-tag';
+                        tagElement.textContent = tag;
+                        tagsContainer.appendChild(tagElement);
+                    });
+                    
+                    div.appendChild(link);
+                    div.appendChild(tagsContainer);
+                    websiteCell.appendChild(img);
+                    websiteCell.appendChild(div);
+                    
+                    const descCell = document.createElement('td');
+                    descCell.className = 'description';
+                    descCell.textContent = resource.description;
+                    
+                    row.appendChild(websiteCell);
+                    row.appendChild(descCell);
+                    tableBody.appendChild(row);
+                    
+                    // Load favicon
+                    const faviconUrl = `https://www.google.com/s2/favicons?domain=${encodeURIComponent(resource.url)}&sz=64`;
+                    img.src = faviconUrl;
+                    img.onerror = function() {
+                        this.src = 'https://via.placeholder.com/120x90?text=No+Icon';
+                    };
+                });
+            }
+        });
+    </script>
+</body>
+</html>
